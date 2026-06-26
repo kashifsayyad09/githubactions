@@ -1,55 +1,55 @@
-name: Terraform Deployment
+# name: Terraform Deployment
 
-on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Environment"
-        required: true
-        type: choice
-        options:
-          - dev
-          - test
-          - production
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       environment:
+#         description: "Environment"
+#         required: true
+#         type: choice
+#         options:
+#           - dev
+#           - test
+#           - production
 
-      apply:
-        description: "Apply Changes?"
-        required: true
-        type: choice
-        options:
-          - "Yes"
-          - "No"
+#       apply:
+#         description: "Apply Changes?"
+#         required: true
+#         type: choice
+#         options:
+#           - "Yes"
+#           - "No"
 
-# Required for GitHub OIDC
-permissions:
-  id-token: write
-  contents: read
+# # Required for GitHub OIDC
+# permissions:
+#   id-token: write
+#   contents: read
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::851725287994:role/mygithub-role
-          aws-region: us-east-1
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v4
+#         with:
+#           role-to-assume: arn:aws:iam::851725287994:role/mygithub-role
+#           aws-region: us-east-1
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+#       - name: Setup Terraform
+#         uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform Init
-        run: terraform init
+#       - name: Terraform Init
+#         run: terraform init
 
-      - name: Terraform Validate
-        run: terraform validate
+#       - name: Terraform Validate
+#         run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan
+#       - name: Terraform Plan
+#         run: terraform plan
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+#       - name: Terraform Apply
+#         run: terraform apply -auto-approve
