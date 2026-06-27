@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Select Terraform Action"
+        description: "Terraform Action"
         required: true
-        # default: apply
         type: choice
+        default: apply
         options:
           - apply
           - destroy
