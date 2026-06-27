@@ -10,7 +10,7 @@ on:
       action:
         description: "Select Terraform Action"
         required: true
-        default: apply
+        # default: apply
         type: choice
         options:
           - apply
